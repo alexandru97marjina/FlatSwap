@@ -1,0 +1,193 @@
+iesiri informationale contracte
+//afisare contracte vinzare/arenda 
+SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_serv,servicii.nume_serviciu, angajat.nume, contractv.pret,contractv.realizat FROM contractv,servicii,angajat WHERE contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat
+
+$sql = "SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_serv,servicii.nume_serviciu, angajat.nume, contractv.pret,contractv.realizat FROM contractv,servicii,angajat WHERE contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat";
+
+//afisarea contracte cumparare/chirie
+SELECT contractc.id_contractc, contractc.data_in , contractc.data_sf, contractc.id_serv,servicii.nume_serviciu, angajat.nume, contractc.pret,contractc.realizat FROM contractc,servicii,angajat WHERE contractc.id_serv=servicii.id_serv AND contractc.id_angajat=angajat.id_angajat
+
+$sql = "SELECT contractc.id_contractc, contractc.data_in , contractc.data_sf, contractc.id_serv,servicii.nume_serviciu, angajat.nume, contractc.pret,contractc.realizat FROM contractc,servicii,angajat WHERE contractc.id_serv=servicii.id_serv AND contractc.id_angajat=angajat.id_angajat";
+
+
+//interogare
+//Contracte vinzare/arenda care se termina pina la o data respectiva si nu sunt realizate
+SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_serv,servicii.nume_serviciu, angajat.nume, contractv.pret,contractv.realizat FROM contractv,servicii,angajat WHERE contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND contractv.realizat='0' 
+AND contractv.data_sf <= '2018-04-01'
+
+$sql = "SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_serv,servicii.nume_serviciu, angajat.nume, contractv.pret,contractv.realizat FROM contractv,servicii,angajat WHERE contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND contractv.realizat=\'0\' AND contractv.data_sf <= \'2018-04-01\'";
+
+//Contracte cumparare/chirie nerealizate
+SELECT contractc.id_contractc, contractc.data_in , contractv.data_sf, contractv.id_serv,servicii.nume_serviciu, angajat.nume, contractv.pret,contractv.realizat FROM contractv,servicii,angajat WHERE contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND contractv.realizat='0' 
+AND contractv.data_sf <= '2018-04-01'
+
+$sql = "SELECT contractv.id_contractc, contractc.data_in , contractc.data_sf, contractc.id_serv,servicii.nume_serviciu, angajat.nume, contractc.pret,contractc.realizat
+FROM contractc,servicii,angajat WHERE contractc.id_serv=servicii.id_serv
+AND contractc.id_angajat=angajat.id_angajat AND contractc.realizat='0' AND contractc.data_sf <= '$data'";
+
+//servicii 
+contracte care se termina in interval
+SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_oferta,oferta.tip_oferta, angajat.nume, contractv.pret FROM contractv,oferta,angajat WHERE contractv.id_oferta=oferta.id_oferta AND contractv.id_angajat=angajat.id_angajat AND contractv.data_sf BETWEEN '2017.12.30' AND '2018.03.01'
+
+$sql = "SELECT contractv.id_contractv, contractv.data_in , contractv.data_sf, contractv.id_oferta,oferta.tip_oferta, angajat.nume, contractv.pret FROM contractv,oferta,angajat WHERE contractv.id_oferta=oferta.id_oferta AND contractv.id_angajat=angajat.id_angajat AND contractv.data_sf BETWEEN \'2017.12.30\' AND \'2018.03.01\'";
+
+// Nr total de contracte si sum venit
+SELECT COUNT(*) as NrContractv ,SUM(pret) AS Venit FROM contractv WHERE contractv.data_sf BETWEEN '2017.12.30' AND '2018.03.01'
+
+$sql = "SELECT COUNT(*) as NrContractv ,SUM(pret) AS Venit FROM contractv WHERE contractv.data_sf BETWEEN \'2017.12.30\' AND \'2018.03.01\'";
+
+// Nr total de contracteV si sum venit realizate 
+SELECT COUNT(*) as NrContractv ,SUM(pret) AS Venit FROM contractv WHERE contractv.realizat='1' AND contractv.data_sf BETWEEN '2017.12.30' AND '2018.04.01'
+
+$sql = "SELECT COUNT(*) as NrContractv ,SUM(pret) AS Venit FROM contractv WHERE contractv.realizat=\'1\' AND contractv.data_sf BETWEEN \'2017.12.30\' AND \'2018.04.01\'";
+
+
+// Nr total de contracteC si sum venit realizate 
+SELECT COUNT(*) as NrContractc ,SUM(pret) AS Venit FROM contractc WHERE contractc.realizat='1' AND contractc.data_sf BETWEEN '2017.12.30' AND '2018.04.01'
+
+$sql = "SELECT COUNT(*) as NrContractc ,SUM(pret) AS Venit FROM contractc WHERE contractc.realizat=\'1\' AND contractc.data_sf BETWEEN \'2017.12.30\' AND \'2018.04.01\'";
+
+
+//Angajati 
+
+//Vezi toti angajatii
+
+//Numarul de contracte realizate Cumparari/vinzari
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Realizat FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat='1' UNION SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Realizat FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat='1'
+
+$sql = "SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Realizat FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat=\'1\' \n"
+
+    . "UNION \n"
+
+    . "SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Realizat FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat=\'1\'";
+
+
+//numarul contracte active
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Active FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat='0' UNION SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Active FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat='0'
+
+$sql = "SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Active FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat=\'0\' UNION SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Active FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat=\'0\'";
+
+//totul impreuna
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Realizat  FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat='1' 
+UNION
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Realizat FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat='1' 
+UNION 
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume,COUNT(contractv.realizat) as Active FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat='0' 
+UNION 
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Active FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat='0'
+
+
+
+//Contracte realizate 
+SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractv.realizat) as Realizat FROM angajat , contractv WHERE angajat.id_angajat=contractv.id_angajat AND contractv.realizat='1' AND contractv.data_sf <= '2018.03.01' UNION SELECT angajat.id_angajat, angajat.nume, angajat.prenume, COUNT(contractc.realizat) as Realizat FROM angajat , contractc WHERE angajat.id_angajat=contractc.id_angajat AND contractc.realizat='1' AND contractc.data_sf BETWEEN '2017.12.30' AND '2018.04.01'
+
+
+
+
+//Servii
+
+//cele mai populare servii
+SELECT servicii.id_serv , grserv.nume_grupa ,servicii.nume_serviciu,servicii.pret_serv,COUNT(servicii.id_serv) FROM servicii,grserv,contractv WHERE servicii.id_serv=contractv.id_serv AND contractv.data_in <= '2018.04.25'
+
+
+//toate serviciile de Vinzare/Dare in arenda
+SELECT servicii.id_serv, grserv.nume_grupa, servicii.nume_serviciu, servicii.pret_serv,servicii.Descriere FROM servicii,grserv WHERE servicii.id_grserv=grserv.id_grserv AND grserv.id_grserv IN(1,3)
+
+$sql = "SELECT servicii.id_serv, grserv.nume_grupa, servicii.nume_serviciu, servicii.pret_serv,servicii.Descriere FROM servicii,grserv \n"
+
+    . "WHERE servicii.id_grserv=grserv.id_grserv AND  grserv.id_grserv IN(1,3)";
+
+
+//afisarea ofertelor
+SELECT contractv.id_contractv , contractv.id_apartament,apartament.nr_camere,apartament.etajul,apartament.starea,apartament.nr_etaje,apartament.mobilat,apartament.incalzire, apartament.sector, apartament.title,apartament.text,apartament.pret, contractv.id_serv, servicii.nume_serviciu FROM contractv, apartament, servicii WHERE contractv.id_apartament=apartament.id_apartament AND contractv.id_serv=servicii.id_serv AND servicii.id_serv IN(4,6)
+
+$sql = "SELECT contractv.id_contractv , contractv.id_apartament,apartament.nr_camere,apartament.etajul,apartament.starea,apartament.nr_etaje,apartament.mobilat,apartament.incalzire, apartament.sector, apartament.title,apartament.text,apartament.pret, contractv.id_serv, servicii.nume_serviciu FROM contractv, apartament, servicii WHERE contractv.id_apartament=apartament.id_apartament AND contractv.id_serv=servicii.id_serv AND servicii.id_serv IN(4,6)";
+
+//intoarce ultimul id_vinzator introdus
+SELECT vinzator.id_vinzator FROM vinzator ORDER BY vinzator.id_vinzator DESC LIMIT 1
+
+$sql = "SELECT vinzator.id_vinzator FROM vinzator ORDER BY vinzator.id_vinzator DESC LIMIT 1";
+
+//Introducere date vinzator
+INSERT into vinzator (vinzator.nume_vinzator,vinzator.prenume_vinzator,vinzator.telefon,vinzator.email) VALUES ('Anenco','Marc','69543212','Anenco@gmail.com')
+
+$sql = "INSERT into vinzator (vinzator.nume_vinzator,vinzator.prenume_vinzator,vinzator.telefon,vinzator.email)\n"
+
+    . "VALUES (\'Anenco\',\'Marc\',\'69543212\',\'Anenco@gmail.com\')";
+
+
+//Introduce date apartament 
+
+//intoarce ultimul id la apartament introdus 
+SELECT apartament.id_apartament FROM apartament ORDER BY apartament.id_apartament DESC LIMIT 1
+
+$sql = "SELECT apartament.id_apartament FROM apartament ORDER BY apartament.id_apartament DESC LIMIT 1";
+
+//introdu date despre apartament 
+
+INSERT INTO apartament (apartament.nr_camere,apartament.etajul,apartament.starea,apartament.suprafata,apartament.nr_etaje,apartament.mobilat,apartament.incalzire,apartament.sector, apartament.title,apartament.text,apartament.pret) VALUES ('3','3','buna','110','5','Da','centralizata','Riscani','APARTAMENT STARE BUNA RISCANI','Apartament mobiliat, intr-o stare buna cu 3 camere in sectorul Riscani,ofera accs la magazine, scoli, gradinite.','48000')
+
+$sql = "INSERT INTO apartament (apartament.nr_camere,apartament.etajul,apartament.starea,apartament.suprafata,apartament.nr_etaje,apartament.mobilat,apartament.incalzire,apartament.sector, apartament.title,apartament.text,apartament.pret)\n"
+    . "VALUES (\'3\',\'3\',\'buna\',\'110\',\'5\',\'Da\',\'centralizata\',\'Riscani\',\'APARTAMENT STARE BUNA RISCANI\',\'Apartament mobiliat, intr-o stare buna cu 3 camere in sectorul Riscani,ofera accs la magazine, scoli, gradinite.\',\'48000\')";
+
+//introdu contract V
+INSERT INTO contractv (contractv.id_vinzator,contractv.id_apartament,contractv.id_angajat,contractv.id_serv,contractv.data_in,contractv.data_sf,contractv.pret,contractv.realizat) VALUES ('6','11','4','2','2017-11-03','2017-12-20','100','1')
+
+$sql = "INSERT INTO contractv (contractv.id_vinzator,contractv.id_apartament,contractv.id_angajat,contractv.id_serv,contractv.data_in,contractv.data_sf,contractv.pret,contractv.realizat)\n"
+
+    . "VALUES (\'6\',\'11\',\'4\',\'2\',\'2017-11-03\',\'2017-12-20\',\'100\',\'1\')";
+
+
+INSERT INTO `contractv` (`id_contractv`, `id_vinzator`, `id_apartament`, `id_angajat`, `data_in`, `data_sf`, `id_serv`, `pret`, `realizat`) VALUES (NULL, '9', '13', '1', '2017-12-04', '2017-12-21', '6', '500', '1');
+
+$sql = "INSERT INTO `contractv` (`id_contractv`, `id_vinzator`, `id_apartament`, `id_angajat`, `data_in`, `data_sf`, `id_serv`, `pret`, `realizat`) VALUES (NULL, \'9\', \'13\', \'1\', \'2017-12-04\', \'2017-12-21\', \'6\', \'500\', \'1\')";
+
+
+
+
+//cumparator
+INSERT INTO cumparator (cumparator.nume_cumparator,cumparator.prenume_cumparator,cumparator.telefon,cumparator.email) VALUES('Ghica','Petru','68899876','Ghica@gmail.com')
+
+$sql = "INSERT INTO cumparator (cumparator.nume_cumparator,cumparator.prenume_cumparator,cumparator.telefon,cumparator.email) VALUES(\'Ghica\',\'Petru\',\'68899876\',\'Ghica@gmail.com\')";
+
+
+
+
+
+//contracte realizate 
+SELECT angajat.id_angajat,angajat.nume,angajat.prenume,servicii.nume_serviciu FROM contractv,angajat,servicii WHERE contractv.id_angajat=angajat.id_angajat AND contractv.id_serv=servicii.id_serv AND contractv.realizat='1'
+
+
+SELECT contractv.id_contractv, contractv.id_angajat, COUNT(contractv.realizat) as realizate from contractv WHERE contractv.realizat='1' GROUP by contractv.id_angajat
+
+
+SELECT contractv.id_angajat,angajat.nume,angajat.prenume, COUNT(contractv.realizat) as realizate from contractv,angajat WHERE contractv.realizat='1' AND contractv.id_angajat=angajat.id_angajat GROUP by contractv.id_angajat
+
+
+
+///contracte realizate vinzare reusita angajatiolor modificata
+SELECT contractv.id_angajat,angajat.nume,angajat.prenume, COUNT(contractv.realizat) as realizate from contractv,angajat WHERE contractv.realizat='1' AND contractv.id_angajat=angajat.id_angajat AND contractv.data_sf BETWEEN '2017-09-01' AND '2018-04-30' GROUP by contractv.id_angajat
+
+
+
+
+actualizare contract 
+UPDATE `contractc` SET `realizat` = '1' WHERE `contractc`.`id_contractc` = 1;
+
+UPDATE `contractc` SET `realizat` = '1' , `data_sf`='2017-12-20' WHERE `contractc`.`id_contractc` = 1
+
+$sql = "UPDATE `contractc` SET `realizat` = \'1\' , `data_sf`=\'2017-12-20\' WHERE `contractc`.`id_contractc` = 1";
+
+"DELETE FROM `contractc` WHERE `contractc`.`id_contractc` = 2"
+
+
+//Intoarce oferte vinzare
+SELECT contractv.id_contractv , contractv.id_apartament,apartament.nr_camere,apartament.etajul,apartament.starea,apartament.nr_etaje,apartament.mobilat,apartament.incalzire, apartament.sector, apartament.title,apartament.text,apartament.pret, angajat.nr_telefon FROM contractv, apartament,angajat, servicii WHERE contractv.id_apartament=apartament.id_apartament AND contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND servicii.id_serv ='4'
+
+
+//Solicitari servicii
+SELECT contractv.id_serv,servicii.nume_serviciu, COUNT(contractv.id_serv) as solicitari from contractv,servicii WHERE contractv.id_serv=servicii.id_serv AND contractv.data_sf BETWEEN '2017-09-01' AND '2018-04-30' GROUP by contractv.id_serv
+
+$sql = "SELECT contractv.id_serv,servicii.nume_serviciu, COUNT(contractv.id_serv) as solicitari from contractv,servicii WHERE  contractv.id_serv=servicii.id_serv AND contractv.data_sf BETWEEN \'2017-09-01\' AND \'2018-04-30\' GROUP by contractv.id_serv"
+
+

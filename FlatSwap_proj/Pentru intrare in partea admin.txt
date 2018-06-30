@@ -1,0 +1,13 @@
+
+//Pentru a acesa pagina admin, se acceseaza linkul din partea de jos a sitului care este ascunsa in
+fraza :  Toate drepturile aparate © 2017 Marjina Alexandru
+
+//Pentru a intra ca administrator a bazei de date:
+Email : alex1997a25@gmail.com
+Parola :12345
+
+
+//Pentru a intra ca sef de interprindere
+Email : flatswap@gmail.com
+Parola: 54321
+

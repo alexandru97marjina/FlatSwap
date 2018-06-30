@@ -1,0 +1,8 @@
+
+SELECT contractc.id_contractc ,apartament.nr_camere,apartament.mobilat,apartament.incalzire, apartament.sector, angajat.nr_telefon FROM contractc, apartament,angajat, servicii WHERE contractc.id_apartament=apartament.id_apartament AND contractc.id_serv=servicii.id_serv AND contractc.id_angajat=angajat.id_angajat AND contractc.realizat='0' AND servicii.id_serv ='7'
+
+
+//cautare
+SELECT contractv.id_contractv ,apartament.nr_camere,apartament.etajul,apartament.starea,apartament.suprafata,apartament.nr_etaje,apartament.mobilat,apartament.incalzire, apartament.sector, apartament.title,apartament.text,apartament.pret, angajat.nr_telefon,contractv.id_apartament FROM contractv, apartament,angajat, servicii WHERE contractv.id_apartament=apartament.id_apartament AND contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND contractv.realizat='0' AND servicii.id_serv ='4' AND apartament.nr_camere='3'
+
+SELECT contractv.id_contractv ,apartament.nr_camere,apartament.etajul,apartament.starea,apartament.suprafata,apartament.nr_etaje,apartament.mobilat,apartament.incalzire, apartament.sector, apartament.title,apartament.text,apartament.pret, angajat.nr_telefon,contractv.id_apartament FROM contractv, apartament,angajat, servicii WHERE contractv.id_apartament=apartament.id_apartament AND contractv.id_serv=servicii.id_serv AND contractv.id_angajat=angajat.id_angajat AND contractv.realizat='0' AND servicii.id_serv IN(4,6) AND apartament.nr_camere='3' AND apartament.mobilat='Da' AND apartament.sector='%Centru%'

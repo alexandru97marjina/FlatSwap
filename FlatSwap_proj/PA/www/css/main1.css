@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css?family=Artifika|Lato|Lemonada|Raleway|Roboto');
+*{
+  margin: 0;
+  padding: 0;
+}
+body{
+  background-color: #f2f2f2;
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 16px;
+  color: #2b2b2b;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scroling: touch;
+  margin-top: 70px;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Roboto";
+  font-weight: 300;
+  color: #161212;
+}
+p {
+  line-height: 20px;
+  margin-bottom: 25px;
+}
+
+.centered {
+  text-align: center;
+}
+
+a {
+  color: #ba5f5f;
+}
+
+a:hover, a:focus {
+  color: #7b7b7b;
+  text-decoration: none;
+  outline: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border-top:1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+.navbar {
+  font-weight: 800;
+  font-size: 14px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-inverse {
+  background: #2d2d2d;
+  border-color: #2d2d2d;
+}
+.navbar-header>#logo{
+  font-size: 2em;
+}
+
+.navbar-inverse .navbar-nav>a:active {
+  border: 3px;
+  padding: 3px;
+  background-color: #ff7878;
+}
+
+div#headerwrap div.container {
+  background-image: url('headwrap1.jpg');
+  margin-top: -10px;
+  padding-top: 40px;
+  text-align: center;
+  background-attachment: relative;
+  background-position:center;
+  min-height: 400px;
+  width: 100%;
+  background-size: cover;
+  -webkit-backgorund-size: cover;
+  -moz-backgorund-size: cover;
+  -o-backgorund-size: cover;
+}
+#headerwrap h1 {
+  margin-top: 60px;
+  color: rgb(21, 221, 29);
+  font-size: 70px;
+  font-weight: 400;
+  letter-spacing: 3px;
+
+}
+
+#headerwrap h2 {
+  color:rgb(242, 36, 80);
+  font-size: 40px;
+  letter-spacing: 2px;
+}
+
+.of{
+  margin-top: -5px;
+  width:80%;
+  min-height: 300px;
+}
+.of h3{
+  margin-top: 30px;
+  color: rgb(49, 130, 194);
+  font-size: 40px;
+}
+.of h5{
+  margin-top: 20px;
+  color: rgb(10, 128, 50);
+  font-size: 25px;
+}
+
+.pr{
+  margin-top: 35px;
+  margin-bottom: 25px;
+  background-color:rgb(167, 173, 166);
+  width: 100%;
+  min-height: 400px;
+}
+.pr h3{
+  color: rgb(255, 26, 4);
+  font-size: 35px;
+  font-family: "Artifika"
+}
+
+
+.tilt img{
+  margin-top: 20px;
+  width: 200px;
+}
+.tilt {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.tilt:hover {
+  -webkit-transform: rotate(-10deg) ;
+  -moz-transform: rotate(-10deg) ;
+  -o-transform: rotate(-10deg) ;
+  -ms-transform: rotate(-10deg) ;
+  transform: rotate(-10deg) ;
+}
+.tilt:hover img{
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.r{
+  width:80%;
+  min-height: 400px;
+}
+.r h3{
+  margin-top: 30px;
+  color: rgb(194, 49, 75);
+  font-size: 40px;
+}
+.r p{
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.r img{
+  margin-left:20%;
+  margin-right:20%;
+  width: 60%;
+  margin-bottom: 10px;
+  margin-top: 30px;
+
+}
+.con{
+  background-color:#ff7878;
+  width: 100%;
+  margin-top: -10px;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-bottom: 60px;
+}
+.com img{
+  float: right;
+  width:600px;
+}
+.con h3,h4{
+  color: rgb(30, 41, 191);
+}
+.fc{
+  margin-right: 100px;
+}
+.fc div.input-group input{
+  width:300px;
+}
+#f{
+  background-color: #2d2d2d;
+  padding-top: 30px;
+  padding-bottom: 20px;
+
+}
+#f i{
+  color: #bdbdbd;
+  font-size:30px;
+  padding:20px;
+}
+
+#f i:hover{
+  color:#ff7878;
+}
+#f p{
+  color:  #bdbdbd;
+}
+#f p:hover{
+  color: rgb(36, 212, 80);
+}
+
+/*Stiluri pentru pagina Oferte*/
+#add_anunt {
+  margin-left: 10px;
+
+}
+#add_anunt a{
+  color: rgb(232, 74, 6);
+}
+
+
+.container-anunturi{
+  background-color: rgb(194, 194, 194);
+  padding: 10px;
+  border:1px solid silver;
+  border-radius: 5px;
+  margin:30px;
+
+}
+.container-anun{
+  margin:20px;
+  margin-left: 30px;
+  padding: 15px;
+  min-height: 350px;
+  width: 95%;
+  border:1px groove rgb(207, 18, 65);
+  border-radius: 10px;
+  background-color: rgb(254, 252, 252);
+}
+#ale{
+    margin-left: 35%
+}
+span#cont{
+  float: right;
+  margin-right: 10px;
+}
+.container-anun h3{
+  margin-left: 20%;
+}
+
+#caract{
+  padding: 10px;
+  float: left;
+  width: 20%;
+  margin-left: 30px;
+}
+#descriere{
+  padding: 10px;
+  width: 45%;
+  margin-left: 25%;
+  height: 245px;
+}
+#photo{
+
+  margin-top: -26%;
+  margin-left:70%;
+}
+.container-anun img{
+  margin-top: -300px;
+  margin:10px;
+  width:250px;
+}
+#pret{
+  margin-left:80%;
+}
+#pret span{
+  font-size: 1.3em;
+}
+
+.pagination {
+  margin-left: 37%;
+}
+
+/*Stiluri pag servicii */
+table{
+  margin-bottom: 20px;
+}
+table,th, td{
+  border-collapse: collapse;
+}
+td, th {
+    border: 1px solid #534c4c;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.Serv h3{
+  color: rgb(18, 161, 41);
+  font-weight:500;
+}
+.Serv h5{
+  color: rgb(18, 45, 161);
+  font-weight:500;
+}
+
+.Serv img{
+  width: 500px;
+}
+#sch input, select{
+  width: 20%;
+}
+#sch select{
+  width: 20%;
+  margin-bottom: 20px;
+}
